@@ -20,18 +20,6 @@ import { useUser } from "@clerk/nextjs"
 import { screenApplication } from "@/lib/ai-screening"
 import type { JobRequirements, ApplicationData, ScreeningResult } from "@/lib/ai-screening"
 
-// Sample job data - same as in job-details
-const jobData = {
-  1: {
-    id: 1,
-    title: "Senior Frontend Developer",
-    company: "TechFlow",
-    logo: "/placeholder.svg?height=40&width=40",
-    location: "Remote",
-    type: "Full-time",
-    salary: "$120,000 - $150,000",
-  },
-}
 
 interface JobApplicationProps {
   jobId: string

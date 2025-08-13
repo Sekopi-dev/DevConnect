@@ -31,6 +31,7 @@ export function AdminView({ jobId }: JobDetailsProps) {
         if (!response.ok) throw new Error("Job not found");
         const data = await response.json();
         setJob(data);
+        setIsSaved
         console.log("✅ fetched job", data);
       } catch (error) {
         console.error("❌ Failed to fetch job:", error);
