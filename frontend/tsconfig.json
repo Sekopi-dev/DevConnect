@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.jsx", "app/layout.jsx", "lib/utils.js", "app/dashboard/(components)/DashboardLayout.jsx", "app/dashboard/(components)/DashboardOverview.jsx", "app/dashboard/applications/(components)/ApplicationTracker.jsx", "app/dashboard/jobs/(components)/jobApplication.tsx", "app/dashboard/jobs/(components)/JobDetail.jsx", "app/dashboard/jobs/(components)/JobListings.jsx", "app/dashboard/profile/(Components)/UserProfile.jsx", "app/admin/(components)/ApplicationManager.jsx", "app/admin/(components)/AdminView.jsx", "app/dashboard/jobs/[id]/page.jsx", "app/admin/jobs/[id]/page.jsx", "app/admin/jobs/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.jsx", "app/layout.jsx", "lib/utils.js", "app/dashboard/(components)/DashboardLayout.jsx", "app/dashboard/(components)/DashboardOverview.jsx", "app/dashboard/applications/(components)/ApplicationTracker.jsx", "app/dashboard/jobs/(components)/jobApplication.tsx", "app/dashboard/jobs/(components)/JobDetail.jsx", "app/dashboard/jobs/(components)/JobListings.jsx", "app/dashboard/profile/(Components)/UserProfile.jsx", "app/admin/(components)/ApplicationManager.jsx", "app/admin/(components)/AdminView.jsx", "app/dashboard/jobs/[id]/page.jsx", "app/admin/jobs/[id]/page.jsx", "app/admin/jobs/page.jsx", "app/dashboard/jobs/[id]/apply/page.jsx"],
   "exclude": ["node_modules"]
 }
