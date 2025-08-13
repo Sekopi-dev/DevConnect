@@ -31,12 +31,7 @@ export function ApplicationsManager() {
   const [statusFilter, setStatusFilter] = useState("all")
   const [selectedApplication, setSelectedApplication] = useState(null)
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
-
-  const [responseDialog, setResponseDialog] = useState<{
-    isOpen,
-    type,
-    application
-  }>({
+  const [responseDialog, setResponseDialog] = useState({
     isOpen: false,
     type: null,
     application: null,
@@ -50,10 +45,7 @@ export function ApplicationsManager() {
   })
 
   
-  const [aiResultsDialog, setAiResultsDialog] = useState<{
-    isOpen,
-    application
-  }>({
+  const [aiResultsDialog, setAiResultsDialog] = useState({
     isOpen: false,
     application: null,
   })
