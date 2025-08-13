@@ -12,11 +12,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 // Sample job data - in a real app, this would be fetched based on the jobId
 
-interface JobDetailsProps {
-  jobId: string;
-}
 
-export function AdminView({ jobId }: JobDetailsProps) {
+export function AdminView({ jobId }) {
   const router = useRouter()
   const [job, setJob] = useState(null)
 
