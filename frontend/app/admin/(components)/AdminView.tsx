@@ -3,15 +3,13 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowLeft, Banknote, Bookmark, BookmarkCheck, Building2, Clock, DollarSign, MapPin, Share2, Users } from "lucide-react"
+import { ArrowLeft, Banknote, Bookmark, BookmarkCheck, Building2, MapPin, Share2} from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
-import { useParams } from "next/navigation";
-import { formatDistanceToNow, parseISO } from "date-fns"
 // Sample job data - in a real app, this would be fetched based on the jobId
 
 interface JobDetailsProps {
@@ -21,18 +19,13 @@ interface JobDetailsProps {
 export function AdminView({ jobId }: JobDetailsProps) {
   const router = useRouter()
   const [job, setJob] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+
   const [isSaved, setIsSaved] = useState(job?.saved || false)
 
 
-  const toggleSaved = () => {
-    setIsSaved(!isSaved)
-    // In a real app, you would update this in the backend
-  }
-
   useEffect(() => {
     const fetchJob = async () => {
-      setIsLoading(true); // ✅ add loading state at start
+
       try {
         const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
         if (!response.ok) throw new Error("Job not found");
@@ -43,7 +36,7 @@ export function AdminView({ jobId }: JobDetailsProps) {
         console.error("❌ Failed to fetch job:", error);
         setJob(null);
       } finally {
-        setIsLoading(false);
+     
       }
     };
 
@@ -78,7 +71,7 @@ const handleDelete = async () => {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-800 mb-2">Job Not Found</h1>
-          <p className="text-slate-600 mb-4">The job you're looking for doesn't exist or has been removed.</p>
+          <p className="text-slate-600 mb-4">The job you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           <Button onClick={() => router.back()}>Go Back</Button>
         </div>
       </div>

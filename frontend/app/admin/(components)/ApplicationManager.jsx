@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Download, FileText, Filter, Search, Star,   Calendar,
+import {FileText, Filter, Search,  Calendar,
   Mail,
   CheckCircle,
   XCircle,
@@ -16,112 +16,26 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { formatDistanceToNow, parseISO } from "date-fns"
 import { Textarea } from "@/components/ui/textarea"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-// Sample data for applications
-const applicationsData = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    email: "sarah.j@example.com",
-    position: "Senior Frontend Developer",
-    experience: "5 years",
-    applied: "May 2, 2025",
-    status: "new",
-    skills: ["React", "TypeScript", "Next.js"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: true,
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    email: "michael.c@example.com",
-    position: "Backend Engineer",
-    experience: "3 years",
-    applied: "May 1, 2025",
-    status: "reviewed",
-    skills: ["Node.js", "Express", "MongoDB"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: false,
-  },
-  {
-    id: 3,
-    name: "Emma Wilson",
-    email: "emma.w@example.com",
-    position: "Full Stack Developer",
-    experience: "4 years",
-    applied: "Apr 30, 2025",
-    status: "contacted",
-    skills: ["React", "Node.js", "PostgreSQL"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: true,
-  },
-  {
-    id: 4,
-    name: "David Rodriguez",
-    email: "david.r@example.com",
-    position: "DevOps Engineer",
-    experience: "6 years",
-    applied: "Apr 29, 2025",
-    status: "new",
-    skills: ["Docker", "Kubernetes", "AWS"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: false,
-  },
-  {
-    id: 5,
-    name: "Olivia Taylor",
-    email: "olivia.t@example.com",
-    position: "Mobile Developer",
-    experience: "2 years",
-    applied: "Apr 28, 2025",
-    status: "rejected",
-    skills: ["React Native", "TypeScript", "Firebase"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: false,
-  },
-  {
-    id: 6,
-    name: "James Wilson",
-    email: "james.w@example.com",
-    position: "UI/UX Designer",
-    experience: "4 years",
-    applied: "Apr 27, 2025",
-    status: "reviewed",
-    skills: ["Figma", "Adobe XD", "HTML/CSS"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: false,
-  },
-  {
-    id: 7,
-    name: "Sophia Martinez",
-    email: "sophia.m@example.com",
-    position: "Data Scientist",
-    experience: "3 years",
-    applied: "Apr 26, 2025",
-    status: "new",
-    skills: ["Python", "TensorFlow", "SQL"],
-    avatar: "/placeholder.svg?height=40&width=40",
-    starred: true,
-  },
-]
+
 
 export function ApplicationsManager() {
   const [applications, setApplications] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const [positionFilter, setPositionFilter] = useState("all")
   const [statusFilter, setStatusFilter] = useState("all")
-  const [selectedApplication, setSelectedApplication] = useState<any>(null)
+  const [selectedApplication, setSelectedApplication] = useState(null)
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
-  const [loading, setLoading] = useState(true);
+
   const [responseDialog, setResponseDialog] = useState<{
-    isOpen: boolean
-    type: "approve" | "interview" | "offer" | "reject" | null
-    application: any
+    isOpen,
+    type,
+    application
   }>({
     isOpen: false,
     type: null,
@@ -137,8 +51,8 @@ export function ApplicationsManager() {
 
   
   const [aiResultsDialog, setAiResultsDialog] = useState<{
-    isOpen: boolean
-    application: any
+    isOpen,
+    application
   }>({
     isOpen: false,
     application: null,
@@ -158,7 +72,7 @@ export function ApplicationsManager() {
   }, []);
 //=======================================================================
  // Open response dialog
- const openResponseDialog = (type: "approve" | "interview" | "offer" | "reject", application: any) => {
+ const openResponseDialog = (type, application) => {
   setResponseDialog({ isOpen: true, type, application })
   setResponseMessage("")
   setInterviewDate("")
@@ -227,12 +141,12 @@ const handleResponseSubmit = async () => {
   })
 
   // Toggle star status
-  const toggleStar = (id: number) => {
+  const toggleStar = (id) => {
     setApplications(applications.map((app) => (app.id === id ? { ...app, starred: !app.starred } : app)))
   }
 
   // Update application status
-  const updateStatus = (id: number, status: string) => {
+  const updateStatus = (id, status) => {
     setApplications(applications.map((app) => (app.id === id ? { ...app, status } : app)))
   }
 
@@ -496,7 +410,7 @@ const handleResponseSubmit = async () => {
                       <div>
                         <h3 className="text-md font-semibold border-b pb-1">Skills</h3>
                         <div className="mt-2 flex flex-wrap gap-1">
-                          {selectedApplication.profileId.skills.map((skill: string) => (
+                          {selectedApplication.profileId.skills.map((skill) => (
                             <Badge key={skill} variant="outline" className="bg-white">
                               {skill}
                             </Badge>
@@ -659,7 +573,7 @@ const handleResponseSubmit = async () => {
               AI Screening Results
             </DialogTitle>
             <DialogDescription>
-              Detailed AI analysis for {aiResultsDialog.application?.fullName}'s application
+              Detailed AI analysis for {aiResultsDialog.application?.fullName}&apos;s application
             </DialogDescription>
           </DialogHeader>
 
@@ -709,7 +623,7 @@ const handleResponseSubmit = async () => {
                     Matched Skills ({aiResultsDialog.application.screeningResult.matchedSkills.length})
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {aiResultsDialog.application.screeningResult.matchedSkills.map((skill: string) => (
+                    {aiResultsDialog.application.screeningResult.matchedSkills.map((skill) => (
                       <Badge key={skill} variant="outline" className="bg-green-50 text-green-700 border-green-200">
                         {skill}
                       </Badge>
@@ -724,7 +638,7 @@ const handleResponseSubmit = async () => {
                       Missing Skills ({aiResultsDialog.application.screeningResult.missingSkills.length})
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {aiResultsDialog.application.screeningResult.missingSkills.map((skill: string) => (
+                      {aiResultsDialog.application.screeningResult.missingSkills.map((skill) => (
                         <Badge key={skill} variant="outline" className="bg-red-50 text-red-700 border-red-200">
                           {skill}
                         </Badge>

@@ -15,8 +15,8 @@ interface ProfileData {
   phone: string
   about: string
   skills: string[]
-  experience: any[]
-  education: any[]
+  experience: string[]
+  education: string[]
   social: {
     linkedin: string
     github: string

@@ -64,7 +64,7 @@ interface Profile {
   location: string;
   about: string;
   skills: string[];
-  experience: any[];
+  experience: string[];
   education: string[];
   social: {
     linkedin: string;
@@ -86,7 +86,6 @@ export function JobApplication({ jobId }: JobApplicationProps) {
   const userId = user?.id;
   const [resumeOption, setResumeOption] = useState("database") // or "database" depending on your default
   const [job, setJob] = useState<Job | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -140,7 +139,7 @@ export function JobApplication({ jobId }: JobApplicationProps) {
 //===============================================================================
   useEffect(() => {
     const fetchJob = async () => {
-      setIsLoading(true); // ✅ add loading state at start
+
       try {
         const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
         if (!response.ok) throw new Error("Job not found");
@@ -151,7 +150,7 @@ export function JobApplication({ jobId }: JobApplicationProps) {
         console.error("❌ Failed to fetch job:", error);
         setJob(null);
       } finally {
-        setIsLoading(false);
+  
       }
     };
 
@@ -168,13 +167,14 @@ useEffect(() => {
       if (res.ok) {
         setProfile(data);
         console.log("Profile", data)
+        console.log("file", file)
       } else {
         console.warn("No profile found");
       }
     } catch (err) {
       console.error("Failed to fetch profile:", err);
     } finally {
-      setIsLoading(false);
+     
     }
   };
 
@@ -191,7 +191,7 @@ useEffect(() => {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-800 mb-2">Job Not Found</h1>
-          <p className="text-slate-600 mb-4">The job you're trying to apply for doesn't exist.</p>
+          <p className="text-slate-600 mb-4">The job you&apos;re trying to apply for doesn&apos;t exist.</p>
           <Button onClick={() => router.back()}>Go Back</Button>
         </div>
       </div>
@@ -317,7 +317,7 @@ useEffect(() => {
             </div>
             <h2 className="text-2xl font-bold text-slate-800 mb-2">Application Submitted!</h2>
             <p className="text-slate-600 mb-6">
-              Thank you for applying to the {job.title} position at {job.company}. We'll review your application and get
+              Thank you for applying to the {job.title} position at {job.company}. We&apos;ll review your application and get
               back to you soon.
             </p>
             <div className="space-y-3">
@@ -681,7 +681,7 @@ useEffect(() => {
                       </div>
                       <div className="flex gap-2">
                         <div className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
-                        <span>Follow up within a week if you don't hear back</span>
+                        <span>Follow up within a week if you don&apos;t hear back</span>
                       </div>
                     </div>
                   </CardContent>

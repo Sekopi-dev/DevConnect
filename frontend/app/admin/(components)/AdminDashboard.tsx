@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { ArrowRight, Briefcase, FileText, User } from "lucide-react"
 import { useState, useEffect } from "react"
-import { formatDistanceToNow, parseISO } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -20,10 +19,7 @@ interface Job {
   applications?: number;
 }
 
-// Sample data for recent applications
-const recentApplications = [
 
-]
 
 export function AdminDashboard() {
   const [jobs, setJobs] = useState<Job[]>([]);

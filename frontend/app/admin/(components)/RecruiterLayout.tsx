@@ -4,7 +4,7 @@ import type React from "react"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Briefcase, FileText, LogOut, Menu, User } from "lucide-react"
+import { Briefcase, FileText,  Menu, User } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -15,8 +15,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { SignOutButton, UserButton, useUser } from "@clerk/nextjs"
+
+import { UserButton, useUser } from "@clerk/nextjs"
 import { Badge } from "@/components/ui/badge"
 
 export function RecruiterLayout({ children }: { children: React.ReactNode }) {
