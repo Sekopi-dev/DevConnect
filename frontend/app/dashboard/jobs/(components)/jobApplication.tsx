@@ -515,7 +515,7 @@ useEffect(() => {
                         <input
                           type="file"
                           accept=".pdf,.doc,.docx"
-                          onChange={handleFileChange}
+                  
                           className="mt-4"
                         />
                       </div>
