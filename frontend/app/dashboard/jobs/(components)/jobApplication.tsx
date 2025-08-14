@@ -52,7 +52,7 @@ interface Profile {
   location: string;
   about: string;
   skills: string[];
-  experience: string[];
+  experience?: string[];
   education: string[];
   social: {
     linkedin: string;
@@ -532,7 +532,7 @@ useEffect(() => {
                     <CardContent>
                       <p className="text-sm text-slate-600">Name: {profile.name}</p>
                       <p className="text-sm text-slate-600">Title: {profile.title}</p>
-                      <p className="text-sm text-slate-600">Experience: {profile.experience?.[0]?.title}</p>
+
                       {/* Add more preview as needed */}
                     </CardContent>
                   </Card>
