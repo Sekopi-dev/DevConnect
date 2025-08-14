@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, Calendar, CheckCircle2, Clock, Download, Filter, MessageSquare, Search, XCircle } from "lucide-react"
+import { ArrowRight, Calendar, CheckCircle2, Clock, Filter, MessageSquare, Search, XCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -19,7 +19,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
 import { useUser } from "@clerk/nextjs"
 import { formatDistanceToNow, parseISO } from "date-fns"
 // Sample data for applications
@@ -29,7 +28,7 @@ export function ApplicationsTracker() {
   const [applications, setApplications] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
-  const [selectedApplication, setSelectedApplication] = useState<any>(null)
+  const [selectedApplication, setSelectedApplication] = useState(null)
   const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("all")
   const [notes, setNotes] = useState("")
