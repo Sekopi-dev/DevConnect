@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Briefcase, FileText,  Menu, User } from "lucide-react"
@@ -19,11 +17,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { UserButton, useUser } from "@clerk/nextjs"
 import { Badge } from "@/components/ui/badge"
 
-export function RecruiterLayout({ children }: { children: React.ReactNode }) {
+export function RecruiterLayout({ children }) {
   const pathname = usePathname()
   const {user} = useUser();
 
-  const isActive = (path: string) => {
+  const isActive = (path) => {
     return pathname === path
   }
 
