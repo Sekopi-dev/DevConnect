@@ -74,7 +74,6 @@ export function JobApplication({ jobId }: JobApplicationProps) {
   const userId = user?.id;
   const [resumeOption, setResumeOption] = useState("database") // or "database" depending on your default
   const [job, setJob] = useState<Job | null>(null)
-  const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState({
@@ -155,7 +154,7 @@ useEffect(() => {
       if (res.ok) {
         setProfile(data);
         console.log("Profile", data)
-        console.log("file", file)
+
       } else {
         console.warn("No profile found");
       }
@@ -280,9 +279,7 @@ useEffect(() => {
     }
   };
 //==============================================================================================
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+
 //===================================================================================================
 
 //============================================================================================================
