@@ -7,22 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
-// Define the Job type
-interface Job {
-  _id: string;
-  title: string;
-  company: string;
-  location: string;
-  jobType: string;
-  isRemote: boolean;
-  createdAt: string;
-  applications?: number;
-}
+
 
 
 
 export function AdminDashboard() {
-  const [jobs, setJobs] = useState<Job[]>([]);
+  const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [applications, setApplications] = useState([])
   const [count, setCount] = useState(0)
@@ -62,7 +52,7 @@ useEffect(() => {
 
 //===================================================================
   // Helper function to format date
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString) => {
     const date = new Date(dateString);
     const now = new Date();
     const diffInDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
@@ -219,7 +209,7 @@ useEffect(() => {
           <div className="space-y-4">
             {applications.map((application) => (
               <div
-                key={application._id}
+                key={application.id}
                 className="flex items-center justify-between border-b border-slate-100 pb-4 last:border-0 last:pb-0"
               >
                 <div>
