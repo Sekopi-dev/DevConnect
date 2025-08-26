@@ -22,7 +22,7 @@ export function Homepage() {
       console.log("Fetching jobs...");
       setIsLoading(true);
       try {
-        const response = await fetch('http://localhost:5000/api/jobs');
+        const response = await fetch('https://dev-connect-nine-omega.vercel.app/api/jobs');
         console.log("Fetch response:", response);
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
