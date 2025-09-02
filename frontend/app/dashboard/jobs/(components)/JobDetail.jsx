@@ -13,7 +13,7 @@ import { Separator } from "@/components/ui/separator"
 import { formatDistanceToNow, parseISO } from "date-fns"
 // Sample job data - in a real app, this would be fetched based on the jobId
 
-
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export function JobDetails({ jobId }) {
   const router = useRouter()
@@ -31,7 +31,7 @@ export function JobDetails({ jobId }) {
     const fetchJob = async () => {
       setIsLoading(true); // ✅ add loading state at start
       try {
-        const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
+        const response = await fetch(`${BASE_URL}/api/jobs/${jobId}`);
         if (!response.ok) throw new Error("Job not found");
         const data = await response.json();
         setJob(data);

@@ -18,13 +18,13 @@ export function AuthPage() {
   const [name, setName] = useState("")
   const [userType, setUserType] = useState("user")
 
- 
+  const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
   //=======================================================================================
   const handleAdminLogin = async (e) => {
     console.log("email" , email)
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/admin/login", {
+      const res = await fetch(`${BASE_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

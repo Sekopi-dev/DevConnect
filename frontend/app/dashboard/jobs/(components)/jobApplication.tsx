@@ -16,6 +16,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import { useUser } from "@clerk/nextjs"
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 import { screenApplication } from "@/lib/ai-screening"
 import type { JobRequirements, ApplicationData, ScreeningResult } from "@/lib/ai-screening"
@@ -128,7 +129,7 @@ export function JobApplication({ jobId }: JobApplicationProps) {
     const fetchJob = async () => {
 
       try {
-        const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
+        const response = await fetch(`${BASE_URL}/api/jobs/${jobId}`);
         if (!response.ok) throw new Error("Job not found");
         const data = await response.json();
         setJob(data);
@@ -149,7 +150,7 @@ useEffect(() => {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/profile/${userId}`);
+      const res = await fetch(`${BASE_URL}/api/profile/${userId}`);
       const data = await res.json();
       if (res.ok) {
         setProfile(data);

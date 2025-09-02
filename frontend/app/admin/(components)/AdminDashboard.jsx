@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 
 
-
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 
 export function AdminDashboard() {
@@ -20,7 +20,7 @@ export function AdminDashboard() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/jobs');
+        const response = await fetch(`${BASE_URL}/api/jobs`);
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
         }
@@ -40,7 +40,7 @@ export function AdminDashboard() {
 //====================================================================
 useEffect(() => {
   const fetchApplications = async () => {
-    const res = await fetch("http://localhost:5000/api/applications/all");
+    const res = await fetch(`${BASE_URL}/api/applications/all`);
     const json = await res.json();
     console.log("✅ Fetched from frontend:", json);
     setCount(json.count)
@@ -219,9 +219,7 @@ useEffect(() => {
                     <span className="text-xs text-slate-500">• {application.createdAt}</span>
                   </div>
                 </div>
-                <Button variant="ghost" size="sm" className="gap-1">
-                  View CV <ArrowRight className="h-4 w-4" />
-                </Button>
+
               </div>
             ))}
           </div>

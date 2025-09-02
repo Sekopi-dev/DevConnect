@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { formatDistanceToNow, parseISO } from "date-fns"
 
-
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 // Sample data for job listings
 
 export function JobListings() {
@@ -49,7 +49,7 @@ export function JobListings() {
         const fetchJobs = async () => {
             setIsLoading(true); // ✅ show loading if needed
             try {
-                const response = await fetch('http://localhost:5000/api/jobs');
+                const response = await fetch(`${BASE_URL}/api/jobs`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch jobs');
                 }

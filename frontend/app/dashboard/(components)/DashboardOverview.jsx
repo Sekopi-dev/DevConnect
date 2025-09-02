@@ -25,7 +25,7 @@ const recentApplications = [
 
 ]
 
-
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 //============================
 export function UserDashboardOverview( ) {
    const [applications, setApplications] = useState([]);
@@ -47,7 +47,7 @@ useEffect(() => {
 
   const fetchApps = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/applications/${userId}`);
+      const res = await fetch(`${BASE_URL}/api/applications/${userId}`);
       const json = await res.json();
       if (json.success) {
         setApplications(json.data);
@@ -72,7 +72,7 @@ useEffect(() => {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/applications/stats/${userId}`);
+      const res = await fetch(`${BASE_URL}/api/applications/stats/${userId}`);
       const data = await res.json();
       setStats(data);
       console.log("stats", data)

@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 // Sample job data - in a real app, this would be fetched based on the jobId
-
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export function AdminView({ jobId }) {
   const router = useRouter()
@@ -24,7 +24,7 @@ export function AdminView({ jobId }) {
     const fetchJob = async () => {
 
       try {
-        const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
+        const response = await fetch(`${BASE_URL}/api/jobs/${jobId}`);
         if (!response.ok) throw new Error("Job not found");
         const data = await response.json();
         setJob(data);
@@ -46,7 +46,7 @@ const handleDelete = async () => {
   if (!confirmDelete) return;
 
   try {
-    const res = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+    const res = await fetch(`${BASE_URL}/api/jobs/${jobId}`, {
       method: "DELETE",
     });
 

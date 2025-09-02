@@ -41,7 +41,7 @@ export function ApplicationsTracker() {
 
     const fetchApps = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/applications/${userId}`);
+        const res = await fetch(`${BASE_URL}/api/applications/${userId}`);
         const json = await res.json();
         if (json.success) {
           setApplications(json.data);

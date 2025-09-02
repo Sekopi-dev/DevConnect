@@ -31,6 +31,7 @@ import { ProfileTips } from "./ProfileTips"
 import { useUser } from "@clerk/nextjs"
 
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export function UserProfile() {
   const [profile, setProfile] = useState({
@@ -109,7 +110,7 @@ export function UserProfile() {
  //=====================================================================================================
  const handleSave = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/profile", {
+    const res = await fetch(`${BASE_URL}/api/profile`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, ...profile }), // profile is your form state
@@ -132,7 +133,7 @@ useEffect(() => {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/profile/${userId}`);
+      const res = await fetch(`${BASE_URL}/api/profile/${userId}`);
       const data = await res.json();
       if (res.ok) {
         setProfile(data);

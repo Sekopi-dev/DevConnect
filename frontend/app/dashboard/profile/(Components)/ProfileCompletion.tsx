@@ -25,6 +25,7 @@ interface ProfileData {
   }
 }
 
+
 interface ProfileCompletionProps {
   profile: ProfileData
   onSectionClick: (section: string) => void
